@@ -21,6 +21,17 @@ def pregunta_09():
      'ggg': 13,
      'hhh': 16,
      'iii': 18,
-     'jjj': 18}}
+     'jjj': 18}
 
     """
+    conteo = {}
+    with open('./files/input/data.csv') as f:
+        for linea in f:
+            col5 = linea.split('\t')[4]
+            claves = {par.split(':')[0] for par in col5.split(',')}
+            for clave in claves:
+                conteo[clave] = conteo.get(clave, 0) + 1
+        conteo = dict(sorted(conteo.items()))
+    return(conteo)
+
+        

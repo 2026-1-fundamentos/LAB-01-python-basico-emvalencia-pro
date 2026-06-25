@@ -27,3 +27,11 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    grupos = {}
+    with open('./files/input/data.csv') as f:
+            for linea in f:
+                cols = linea.split('\t')
+                grupos.setdefault(int(cols[1]), set()).add(cols[0])
+
+    resultado = [(clave, sorted(letras)) for clave, letras in sorted(grupos.items())]
+    return(resultado)

@@ -26,3 +26,28 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    r = []
+    with open('./files/input/data.csv') as f:
+            for linea in f:
+                lista = linea.split('\t')
+                dic = {}
+                for s in lista[4].split(','):
+                        clave, valor = s.split(':')
+                        dic[clave] = int(valor)
+                               
+                for c,v in dic.items():
+                    cont=0
+                    for l in r:
+                        if c == l[0]:
+                            min = l[1]
+                            max = l[2]
+                            if v < min:
+                                l[1] = v
+                            if v > max:
+                                l[2] = v
+                            cont = 1
+                    if cont == 0:
+                        r.append([c,v,v])
+    r = list(map(tuple,r))
+    r.sort()
+    return(r)

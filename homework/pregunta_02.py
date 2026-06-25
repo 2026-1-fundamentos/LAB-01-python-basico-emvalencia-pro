@@ -15,3 +15,26 @@ def pregunta_02():
     [('A', 8), ('B', 7), ('C', 5), ('D', 6), ('E', 14)]
 
     """
+    r = []
+    with open('./files/input/data.csv') as f:
+        r.append([next(f)[0],1])
+        for linea in f:
+            letra = linea.split('\t')[0]
+            c=0
+            for l in r:
+                if letra == l[0]:
+                    l[1] += 1
+                    c=1
+                    break
+            if c==0:
+                r.append([letra,1])
+    r = list(map(tuple,r))
+    r.sort()
+    return(r)                 
+                
+                    
+                    
+                    
+                
+            
+    

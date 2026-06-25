@@ -26,3 +26,20 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    r = []
+    with open('./files/input/data.csv') as f:
+            for linea in f:
+                lista = linea.split('\t')
+                fecha = lista[2]
+                mes = (fecha.split('-'))[1]
+                c=0
+                for l in r:
+                    if mes == l[0]:
+                        l[1] += 1
+                        c=1
+                        break
+                if c==0:
+                    r.append([mes,1])
+    r = list(map(tuple,r))
+    r.sort()
+    return(r)
